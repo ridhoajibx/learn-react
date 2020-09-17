@@ -1,39 +1,57 @@
-import React from 'react'
-import Card from "./components/Card"
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios'
 
 export default function App() {
+    const [users, setUsers] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const getUsers = async () => {
+        setLoading(true)
+        try {
+            setLoading(false)
+            let response = await Axios.get(`https://jsonplaceholder.typicode.com/users`)
+            setUsers(response.data)
+        } catch (error) {
+            setLoading(true)
+            console.log(error.message);
+        }
+    }
+
+    useEffect(() => {
+        getUsers();
+    })
+
     return (
         <div className="py-4">
             <div className="container">
                 <div className="row">
-                    <h4>The Posts</h4>
-                    <hr/>
-                    <div className="col-md-4">
-                        <Card content ={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "The First Post",
-                            published: "26 feb, 2020",
-                        }}
-                        />
-                    </div>
-                    
-                    <div className="col-md-4">
-                        <Card content ={{
-                            imageUrl: "http://placekitten.com/300/200",
-                            title: "The First Post",
-                            published: "06 feb, 2019",
-                        }}
-                        />
-                    </div>
-
-                    <div className="col-md-4">
-                        <Card content ={{
-                            imageUrl: "http://placekitten.com/g/300/200",
-                            title: "The First Post",
-                            published: "02 march, 2018",
-                        }}
-                        />
-                    </div>
+                    {
+                        loading ? <div>Loading ...</div> :
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Website</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        users.map((user, index) => (
+                                            <tr key={index}>
+                                                <td>{user.name}</td>
+                                                <td>{user.username}</td>
+                                                <td>{user.email}</td>
+                                                <td>{user.phone}</td>
+                                                <td>{user.website}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                    }
                 </div>
             </div>
         </div>
