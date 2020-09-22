@@ -24,6 +24,10 @@ export default function Navbar({ children }) {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/contact">Contact</NavLink>
                             </li>
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/users">User</NavLink>
+                            </li>
                         </ul>
 
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
