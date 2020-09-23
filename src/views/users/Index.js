@@ -33,7 +33,7 @@ function Index() {
                             return (
                                 <div key={index} className="col-md-4">
                                     <div className="card mb-4">
-                                        <div className="card-header">{user.name}</div>
+                                        <div className="card-header text-dark">{user.name}</div>
                                         <div className="card-body">
                                             <div className="mb-4">
                                                 <a href={`https://${user.website}`} target="_blank" rel="noopener noreferrer">{user.website}</a>

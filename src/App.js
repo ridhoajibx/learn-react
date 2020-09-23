@@ -8,7 +8,7 @@ export default function App() {
     const defaultTheme = currentTheme === 'dark' ? 'bg-dark text-white' : 'bg-white text-dark';
     
     return (
-        <div className={`${defaultTheme} w-100`}>
+        <div className={`${defaultTheme} vh-100`}>
             <Router />
         </div>
     )
