@@ -1,7 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { authUser } from '../store/Index'
 
 export default function Navbar({ children }) {
+    const { user } = useRecoilValue(authUser)
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -28,6 +31,10 @@ export default function Navbar({ children }) {
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/users">User</NavLink>
                             </li>
+
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/users">{user.name}</NavLink>
+                            </li>
                         </ul>
 
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
@@ -40,7 +47,7 @@ export default function Navbar({ children }) {
             </nav>
 
             <div className="py-4">
-                { children }
+                {children}
             </div>
         </div>
     )
